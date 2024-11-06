@@ -10,7 +10,7 @@
     <ul>
         <li><a href="admission.php">Admission</a></li>
         <li><a href="add_student.php">Add Student</a></li>
-        <li><a href="">View Students</a></li>
+        <li><a href="view_student.php">View Students</a></li>
         <li><a href="">Add Teachers</a></li>
         <li><a href="">View Teachers</a></li>
         <li><a href="">Add Courses</a></li>
