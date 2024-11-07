@@ -40,7 +40,11 @@
     <?php 
         if($_SESSION['message'])
         {
-            echo $_SESSION['message'];
+            echo "<div class='alert alert-success' role='alert'>
+                <strong>Done!</strong>". $_SESSION['message']."
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button></div>";
         }
         unset($_SESSION['message']);
     ?>
@@ -53,6 +57,7 @@
       <th scope="col">Email</th>
       <th scope="col">Password</th>
       <th scope="col">Delete</th>
+      <th scope="col">Update</th>
     </tr>
   </thead>
   <tbody>
@@ -66,7 +71,9 @@
       <td><?php echo "{$info['email']}"; ?></td>
       <td><?php echo "{$info['password']}"; ?></td>
       <td><?php echo "<a onClick = \" javascript:return confirm('Are you sure you want to delete this?') \"
-      href='delete.php?student_id={$info['id']}' class='btn btn-danger sm'>Delete</a>" ?></td>
+      href='delete.php?student_id={$info['id']}' class='btn btn-danger btn-sm'>Delete</a>" ?></td>
+      <td><?php echo "<a href= 'update_student.php?student_id={$info['id']}' 
+      class= 'btn btn-success btn-sm'>Update</a>" ?></td>
     </tr>
     <?php } ?>
   </tbody>
