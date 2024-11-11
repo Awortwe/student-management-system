@@ -11,6 +11,20 @@
         </script>";
     }
 
+    $host = 'localhost';
+    $user = 'root';
+    $password = '';
+    $db = 'school_project';
+
+    $data = mysqli_connect($host,$user,$password,$db);
+    if(!$data)
+    {
+        die('Connection failed');
+    }
+
+    $sql = "SELECT * FROM teacher";
+    $result = mysqli_query($data,$sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -77,41 +91,13 @@
 		
         <div class="container">
             <div class="row">
+                <?php while($info = $result->fetch_assoc()){ ?>
                 <div class="col-md-4">
-                    <img class="teacher-img" src="images/teacher1.jpg" alt="">
-                    <p>At W-school, our teachers are more than educators, 
-                        they are mentors, innovators, and lifelong learners dedicated to 
-                        inspiring and guiding our 
-                        students every step of the way. Each of our faculty members brings 
-                        a unique background, 
-                        a wealth of experience, 
-                        and a commitment to creating an engaging and supportive learning environment.
-                    </p>
+                    <img class="teacher-img" src="<?php echo "{$info['image']}"; ?>">
+                    <h3><?php echo "{$info['name']}"; ?></h3>
+                    <p><?php echo "{$info['description']}"; ?></p>
                 </div>
-
-                <div class="col-md-4">
-                    <img class="teacher-img" src="images/teacher2.jpg" alt="">
-                    <p>At W-school, our teachers are more than educators, 
-                        they are mentors, innovators, and lifelong learners dedicated to 
-                        inspiring and guiding our 
-                        students every step of the way. Each of our faculty members brings 
-                        a unique background, 
-                        a wealth of experience, 
-                        and a commitment to creating an engaging and supportive learning environment.
-                    </p>
-                </div>
-
-                <div class="col-md-4">
-                    <img class="teacher-img" src="images/teacher3.jpg" alt="">
-                    <p>At W-school, our teachers are more than educators, 
-                        they are mentors, innovators, and lifelong learners dedicated to 
-                        inspiring and guiding our 
-                        students every step of the way. Each of our faculty members brings 
-                        a unique background, 
-                        a wealth of experience, 
-                        and a commitment to creating an engaging and supportive learning environment.
-                    </p>
-                </div>
+                <?php } ?>
             </div>
         </div>
 

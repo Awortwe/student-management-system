@@ -24,14 +24,18 @@
         $name = $_POST['name'];
         $description = $_POST['description'];
         $file = $_FILES['image']['name'];
-        $dst = "./teacher_images/".$file;
-        $dst_db = "teacher_images/".$file;
+        $file_extension = pathinfo($file, PATHINFO_EXTENSION);
+    
+        // Generate a unique file name with the extension
+        $new_filename = uniqid() . '.' . $file_extension;
+        $dst = "./teacher_images/" . $new_filename;
+        $dst_db = "teacher_images/" . $new_filename;
 
-        move_uploaded_file($_FILES['image']['tmp_name'],$dst);
+        // Move the file to the destination folder
+        move_uploaded_file($_FILES['image']['tmp_name'], $dst);
 
-        $sql = "INSERT INTO teacher(name,description,image) 
-                VALUES('$name','$description','$dst_db')";
-
+        // Insert the information into the database
+        $sql = "INSERT INTO teacher(name, description, image) VALUES('$name', '$description', '$dst_db')";
         $result = mysqli_query($data, $sql);
 
         if($result)
